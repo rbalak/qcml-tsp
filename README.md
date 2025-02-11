@@ -11,11 +11,11 @@ This repository and a google drive folder was created to collaboratively work on
 
 [Project Sign Up Sheet](https://docs.google.com/spreadsheets/d/1F_qL4Y2409yE5p9qKyGMTvs7Wjq2hFtvgWo_M-3q-Jk/edit?gid=0#gid=0)
 
+[Google Group qcml-05-project-19](https://groups.google.com/g/qcml-05-project-19)
+
 ## Contact Details
 
 Group Distribution List - (mailto:qcml-05-project-19@googlegroups.com)
-
-[qcml-05-project-19](https://groups.google.com/g/qcml-05-project-19)
 
 | Plugin | README |
 | ------ | ------ |
