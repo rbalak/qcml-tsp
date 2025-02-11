@@ -14,6 +14,7 @@ This repository and a google drive folder was created to collaboratively work on
 ## Contact Details
 
 Group Distribution List - (mailto:qcml-05-project-19@googlegroups.com)
+[qcml-05-project-19](https://groups.google.com/g/qcml-05-project-19)
 
 | Plugin | README |
 | ------ | ------ |
