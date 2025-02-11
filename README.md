@@ -22,7 +22,7 @@ Group Distribution List - (mailto:qcml-05-project-19@googlegroups.com)
 | K V M Remya  | (mailto:kvm.ramya@gmail.com) |
 | Balakrishnan Rishikesavan |(mailto:bala.rishikesavan@gmail.com) |
 
-## Directory Structure
+## Google Drive Directory Structure
 
 > Please note that, Google Drive will not be used for source controlling code. > All code would be source controlled in Github, detail of which are provided below
 ```md
