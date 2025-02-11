@@ -10,14 +10,14 @@ This google drive folder was created to collaboratively work on the QCML Project
 
 ## Contact Details
 
-Group Distribution List - [mailto: qcml-05-project-19@googlegroups.com]
+Group Distribution List - (mailto:qcml-05-project-19@googlegroups.com)
 
 | Plugin | README |
 | ------ | ------ |
-| Udaya | [mailto: udayan281192@gmail.com] |
-| Parwez Alam | [mailto: alamparwez25@gmail.com] |
-| K V M Remya  | [mailto: kvm.ramya@gmail.com] |
-| Balakrishnan Rishikesavan | [mailto: bala.rishikesavan@gmail.com] |
+| Udaya | (mailto:udayan281192@gmail.com) |
+| Parwez Alam | (mailto:alamparwez25@gmail.com) |
+| K V M Remya  | (mailto:kvm.ramya@gmail.com) |
+| Balakrishnan Rishikesavan |(mailto:bala.rishikesavan@gmail.com) |
 
 ## Directory Structure
 
