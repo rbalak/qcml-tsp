@@ -22,7 +22,7 @@ Group Distribution List - [mailto: qcml-05-project-19@googlegroups.com]
 ## Directory Structure
 
 > Please note that, Google Drive will not be used for source controlling code. > All code would be source controlled in Github, detail of which are provided below
-
+```md
 Quantum computing TSP
 ├── References
 │   ├── Academic Literature related to the project
@@ -44,7 +44,7 @@ Quantum computing TSP
 ├── Tracker
 │   ├── All action/ project/ progress tracker
 └── readme.md
-
+```
 
 .
 +-- _config.yml
