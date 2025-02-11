@@ -14,9 +14,9 @@ Group Distribution List - [mailto: qcml-05-project-19@googlegroups.com]
 
 | Plugin | README |
 | ------ | ------ |
-| Udaya | [plugins/dropbox/README.md][PlDb] |
-| Parwez Alam | [plugins/github/README.md][PlGh] |
-| K V M Remya  | [plugins/googledrive/README.md][PlGd] |
+| Udaya | [mailto: udayan281192@gmail.com] |
+| Parwez Alam | [mailto: alamparwez25@gmail.com] |
+| K V M Remya  | [mailto: kvm.ramya@gmail.com] |
 | Balakrishnan Rishikesavan | [mailto: bala.rishikesavan@gmail.com] |
 
 ## Directory Structure
