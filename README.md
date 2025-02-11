@@ -9,11 +9,15 @@ This repository and a google drive folder was created to collaboratively work on
 
 [Google Group qcml-05-project-19](https://groups.google.com/g/qcml-05-project-19)
 
-[SOource Code QCML Project 19 - TSP](https://github.com/rbalak/qcml-tsp)
+[Tracker](https://docs.google.com/spreadsheets/d/1efCMAgpkayPfvyUUWLWWO9IugIQOGNPo30WV9EcopQs/edit?usp=drive_link)
+
+[Source Code QCML Project 19 - TSP](https://github.com/rbalak/qcml-tsp)
 
 [Time Pro](https://timespro.com/)
 
 [Project Sign Up Sheet](https://docs.google.com/spreadsheets/d/1F_qL4Y2409yE5p9qKyGMTvs7Wjq2hFtvgWo_M-3q-Jk/edit?gid=0#gid=0)
+
+
 
 
 ## Contact Details
