@@ -1,9 +1,11 @@
 # QCML-05 Project - 19 - Travelling Salesman Problem using Quantum Phase Estimation
 ## About
 
-This google drive folder was created to collaboratively work on the QCML Project - # 19 - To implement Travelling Salesman Problem using Quantum Phase Estimation. This is the go to page for everything related to the project
+This repository and a google drive folder was created to collaboratively work on the QCML Project - # 19 - To implement Travelling Salesman Problem using Quantum Phase Estimation. This is the go to page for everything related to the project
 
 ## Important Links
+
+[Google Drive](https://drive.google.com/drive/folders/11Jk4YobqcOFZtrntQQOaC68bUFjjpQwM?usp=drive_link)
 
 [Time Pro](https://timespro.com/)
 
