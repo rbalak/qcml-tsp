@@ -1,6 +1,5 @@
 HIGH LEVEL APPROACH
 
-###############################
 
 I. Overall Approach
 
