@@ -1,0 +1,155 @@
+HIGH LEVEL APPROACH
+
+###############################
+
+I. Overall Approach
+
+The algorithm can be broken down into the following phases:
+
+Classical Preprocessing (and Optional Quantum Clustering): Prepare the classical input data and, optionally, use Quantum K-means to group cities to potentially improve efficiency.
+
+Encoding City Distances as Phases: Create a matrix representing the distances between cities and transform those distances into phases to be used in the QPE circuit.
+
+Constructing the Unitary Operator (U): Build a quantum unitary operator U whose eigenvalues are related to the possible tour lengths (costs) of TSP routes. The eigenvectors of U are designed to correspond to computational basis states representing specific routes.
+
+Quantum Phase Estimation (QPE): Apply QPE to the unitary U to obtain estimates of its eigenvalues, which represent the total distances of all possible Hamiltonian cycles (routes).
+
+Quantum Search (Minimum Finding): Use a quantum search algorithm (e.g., Grover's algorithm, or Durr and Hoyer's minimum finding algorithm) to find the minimum eigenvalue obtained from the QPE results. This corresponds to the shortest route.
+
+Decoding: Decode the result from the quantum search to determine the cities and the order for shortest travel.
+
+II. Detailed Steps
+
+Classical Preprocessing & Quantum Clustering (Optional)
+
+Input: A set of N cities, and a distance matrix D where Dij is the distance (or cost) of traveling from city i to city j.
+
+Classical:
+
+Clean the data.
+
+Normalize: Scale the distances in the matrix D so that they fall within a suitable range (e.g., 0 to 1) for encoding into phases. This normalization is crucial because the QPE algorithm requires phases in a specific range (usually [0, 2π)). Make sure the scaling takes into account the longest possible route which is less than 2pi, otherwise you will not be able to perform QPE to compute Eigen values correctly.
+
+Quantum (Optional - Quantum K-means for Clustering):
+
+If the number of cities is large, you could use Quantum K-means to cluster cities into smaller groups. This helps to reduce the computational complexity. The basic idea is to group cities into K clusters based on their proximity, assuming that optimal or near-optimal TSP tours will tend to visit cities within the same cluster consecutively.
+
+Quantum K-means steps:
+
+Represent each city as a quantum state: Encode city coordinates into the amplitudes of a quantum state.
+
+Initialize cluster centers (quantum states).
+
+Iterate:
+
+Assign cities to nearest cluster (quantum minimum finding/distance calculation).
+
+Recalculate cluster centers (quantum averaging).
+
+Note: This quantum clustering step is computationally expensive and might not be beneficial for smaller TSP problems. Also, its advantage depends heavily on the structure of the distance matrix.
+
+After the optional Quantum K-means, you'd solve the TSP for each cluster separately and then combine the subtours. This reduces the size of TSP problem from N to the size of each of the K clusters.
+
+Encoding City Distances as Phases
+
+The core idea from the paper is to represent the distances Dij as phases. Create a matrix B where:
+
+B[i][j] = exp(i * D[i][j])
+
+This converts the distances into complex numbers with magnitude 1, suitable for representing as phases in quantum circuits.
+
+Constructing the Unitary Operator (U)
+
+The construction of the unitary U is one of the most critical and potentially challenging aspects. The paper's approach involves creating a set of smaller unitary operators, Uj, for each city.
+
+[Uj]kk = (1 / sqrt(N)) * B[j][k] (where j, k range from 1 to N)
+
+The rest of the elements in Uj are initialized to zero. This creates a diagonal matrix, which is important.
+
+The overall unitary U is then constructed as a tensor product of these unitaries:
+
+U = U1 ⊗ U2 ⊗ ... ⊗ UN (tensor product)
+
+Important Notes:
+
+U will be a diagonal matrix.
+
+The size of U will be 2number of qubits needed.
+
+The eigenstates of U are computational basis states. The eigenvalues of U are complex numbers of the form exp(i * total distance), where total distance is the length of a specific Hamiltonian cycle.
+
+This construction creates (N-1)! elements which contains the total cost of (N-1)! Hamiltonian cycles.
+
+Each cost/route has a unique corresponding eigenstate.
+
+Quantum Phase Estimation (QPE)
+
+Prepare a set of eigenstates corresponding to one of the route(Hamiltonian Cycle). The states represent positions of elements which contains total cost.
+
+Apply QPE to estimate the phases of these eigenstates under the unitary U.
+
+The QPE circuit estimates the eigenvalues of U with corresponding eigenstates.
+
+Standard QPE Steps:
+
+Prepare Eigenstate: The QPE requires an eigenstate as input. For each route/ eigenstate, construct a quantum circuit to prepare that eigenstate |ψ>. You need to know the location of each of these eigenstates.
+
+Control Unitary: Apply the controlled-U operator multiple times (controlled-U2^j for different values of j) on the eigenstate, where the control qubits are the qubits used for phase estimation.
+
+Inverse Quantum Fourier Transform (IQFT): Apply the IQFT to the qubits storing the phase information.
+
+Measurement: Measure the phase qubits to obtain an estimate of the phase (eigenvalue argument).
+
+QPE gives you a binary representation of the phase, which is related to the total distance of a Hamiltonian cycle.
+
+Repeat this process for multiple eigenstates.
+
+Quantum Search for Minimum
+
+After running QPE for all the computational basis states, you have a list of phase estimates (corresponding to tour lengths).
+
+Apply Durr and Hoyer's quantum minimum finding algorithm. This algorithm will find the minimum eigenvalue and tell you its location in the list.
+
+Decoding
+
+The location obtained in step 5 gives the smallest distance.
+
+Find the eigen state corresponding to this location. That eigenstate indicates which route is optimum.
+
+III. Implementation Details
+
+Qubit Allocation: Estimate the number of qubits required for:
+
+Representing cities (log2(N) qubits).
+
+Phase estimation (number of qubits to obtain sufficient precision for the eigenvalues).
+
+Auxiliary qubits for controlled unitary operations.
+
+Circuit Design: Design the quantum circuits for:
+
+Preparing the initial state (equal superposition, or cluster-specific superpositions).
+
+Implementing the controlled unitary operators (U, U2, U4, ...).
+
+Implementing the IQFT.
+
+Implementing the Durr and Hoyer algorithm.
+
+Simulator/Hardware: Use a quantum simulator (e.g., Qiskit, Cirq) or, if possible, actual quantum hardware (IBM Quantum Experience) to run the circuits.
+
+IV. Challenges and Considerations
+
+Qubit Count: The number of qubits required grows significantly with the number of cities, limiting the practical size of TSP instances that can be solved.
+
+Circuit Depth: The QPE circuit can be deep (many quantum gates), making it susceptible to errors on current noisy quantum hardware.
+
+Unitary Implementation: Constructing and implementing the controlled unitary operators (U, U2, U4, ...) efficiently is a significant challenge. The tensor product structure can lead to very complex circuits. The use of advanced circuit synthesis techniques may be necessary.
+
+Error Mitigation: Implement error mitigation techniques to reduce the impact of noise on the results.
+
+Classical-Quantum Hybrid Approach: It's often more practical to use a hybrid classical-quantum approach, where some parts of the algorithm are performed classically (e.g., data preprocessing, initial clustering) and only the computationally intensive parts (phase estimation, minimum finding) are performed on a quantum computer.
+
+V. Example (4 cities)
+
+The paper provided an example for 4 cities. The number of possible Hamiltonian cycles is (4-1)! = 6. Therefore, there are 6 locations which you will run QPE for. If there is symmetry, the cycles reduces by half. QPE will give the value for each total cost, use Durr and Hoyer to find smallest cost out of the lot.
