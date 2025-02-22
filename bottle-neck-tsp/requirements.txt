@@ -1,0 +1,8 @@
+#itertools
+numpy
+#math
+qiskit
+#qiskit.circuit.library
+qiskit_aer
+#qiskit.visualization
+pandas
