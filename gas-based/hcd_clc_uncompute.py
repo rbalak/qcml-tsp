@@ -28,7 +28,7 @@ def create_hcd_clc_uncompute_oracle(threshold):
 
 
     qc = QuantumCircuit(hamiltonian_flag,precision, cth_flag, ancillary, cycle)
-    qc.h(cycle)
+    # qc.h(cycle)
     clc_hcd = create_hcd_clc_oracle(theta_matrix, t, threshold)
     qc.append(clc_hcd,[*cycle, *hamiltonian_flag, *precision, *cth_flag, *ancillary])
     qc.cz(cth_flag[0], hamiltonian_flag[0])
